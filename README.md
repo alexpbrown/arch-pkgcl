@@ -14,3 +14,6 @@ and `nokogiri (1.5.0)`
 ## Note
 This is my first ruby script that does anything useful, so I may have made grave
 errors. Any and all suggestions are welcome!
+
+## License
+Licensed under the [WTFPL](http://sam.zoy.org/wtfpl/)

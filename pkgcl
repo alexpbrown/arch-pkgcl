@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+
+# Author: Alex Brown
+# email: code@alexpbrown.me
+# license: WTFPL
+
 require 'nokogiri'
 require 'open-uri'
 require 'optparse'
