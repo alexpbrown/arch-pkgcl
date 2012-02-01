@@ -1,7 +1,7 @@
 # Maintainer/Author: Alex Brown <code@alexpbrown.me>
 pkgname=pkgcl
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Get changelogs for Arch Linux packages"
 arch=('any')
 url="https://github.com/alexpbrown/arch-pkgcl"
