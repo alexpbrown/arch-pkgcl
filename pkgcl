@@ -21,7 +21,7 @@ opts = OptionParser.new do |opts|
   opts.banner = "Usage: pkgcl [options] <packages>"
   opts.separator ""
 
-  opts.on("-c", "--commits=NUM", Integer, "Show NUM commit messages") do |n| 
+  opts.on("-c", "--commits=NUM", Integer, "Show NUM commit messages") do |n|
     options[:commits] = n
   end
 
@@ -75,7 +75,7 @@ packages.each do |a|
   end
 
   # I need to get the correct git url from here, since some packages use a
-  # different tracking repo (e.g. linux-headers => linux) 
+  # different tracking repo (e.g. linux-headers => linux)
   doc = Nokogiri::HTML(open("http://www.archlinux.org/packages/#{repo}/#{arch}/#{a}"))
   git_link = doc.css("div#actionlist ul li a")[1]['href']
 
@@ -89,7 +89,7 @@ packages.each do |a|
         max_version = info[1]
     end
   end
-  
+
   # get the page with the messages expanded
   doc = Nokogiri::HTML(open("#{git_link}&showmsg=1"))
 
