@@ -12,6 +12,7 @@ def colorize(text, color_code)
   "\e[#{color_code}m#{text}\e[0m"
 end
 
+VERSION = "0.1.1"
 options = {}
 options[:commits] = 1
 options[:show_git_svn] = false
@@ -26,6 +27,11 @@ opts = OptionParser.new do |opts|
 
   opts.on("--show-git-svn-id", "Show git-svn-id messages") do
     options[:show_git_svn] = true
+  end
+
+  opts.on("-v", "--version", "Show version information") do
+    puts VERSION
+    exit
   end
 
   opts.on_tail("-h", "--help", "Show this message") do
