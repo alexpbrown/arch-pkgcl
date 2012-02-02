@@ -79,10 +79,21 @@ packages.each do |a|
   doc = Nokogiri::HTML(open("http://www.archlinux.org/packages/#{repo}/#{arch}/#{a}"))
   git_link = doc.css("div#actionlist ul li a")[1]['href']
 
+  # Calculate which repo has the most recent version so we can output
+  # the correct repo
+  max_version = "0"
+  doc.css("div#elsewhere.widget ul li").each do |ver|
+    info = ver.content.split(" ")
+    if info[1] > max_version then
+        repo = info[2].tr("[]", "")
+        max_version = info[1]
+    end
+  end
+  
   # get the page with the messages expanded
   doc = Nokogiri::HTML(open("#{git_link}&showmsg=1"))
 
-  print "["+colorize(a, 31)+"]\n"
+  print "["+colorize(repo+"/"+a, 31)+"]\n"
   options[:commits].times do |n|
     age = doc.css('table.list.nowrap tr.logheader')[n].css('td')[0].content
     header = doc.css('table.list.nowrap td.logsubject')[n].content
