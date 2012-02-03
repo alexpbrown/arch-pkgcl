@@ -80,7 +80,11 @@ def get_pkg(pkg)
   doc = Nokogiri::HTML(open("http://www.archlinux.org/packages/#{repo}/#{arch}/#{pkg}"))
 
   u_date = doc.at_xpath('.//th[text()="Last Updated:"]').parent.children[2].content
+
   @pkg_time = Time.parse(u_date)
+  if @pkg_time.strftime("%F") == Time.now.strftime("%F")
+    @pkg_time = Time.now
+  end
 
   return doc.css("div#actionlist ul li a")[1]['href']
 end
