@@ -101,8 +101,6 @@ def show_commit(n)
     end
 
     if git_time > @pkg_time then
-      @options[:commits] += 1
-      @output += 1
       return
     end
   end
@@ -130,7 +128,10 @@ packages.each do |p|
   @doc = Nokogiri::HTML(open("#{git_link}&showmsg=1"))
 
   @output = 0
+  n = 0
   while @output < @options[:commits]
-    show_commit(@output)
+    show_commit(n)
+    n +=1
   end
+
 end
