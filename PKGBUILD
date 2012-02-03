@@ -1,6 +1,6 @@
 # Maintainer/Author: Alex Brown <code@alexpbrown.me>
 pkgname=pkgcl
-pkgver=0.2.0
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="Get changelogs for Arch Linux packages"
 arch=('any')
@@ -8,7 +8,7 @@ url="https://github.com/alexpbrown/arch-pkgcl"
 license=('custom:WTFPL')
 depends=("ruby" "ruby-nokogiri")
 source=($pkgname "LICENSE")
-md5sums=('b7622492ad5377cffd5d44a92449e4b8'
+md5sums=('139ea018685a8456ced08b27f65f9098'
          '389a9e29629d1f05e115f8f05c283df5')
 
 package() {
