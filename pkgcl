@@ -12,7 +12,7 @@ def colorize(text, color_code)
   "\e[#{color_code}m#{text}\e[0m"
 end
 
-VERSION = "0.1.1"
+VERSION = "0.2.0"
 @options = {}
 @options[:commits] = 1
 @options[:show_git_svn] = false
