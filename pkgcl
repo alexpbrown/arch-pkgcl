@@ -8,10 +8,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'optparse'
 
-def colorize(text, color_code)
-  "\e[#{color_code}m#{text}\e[0m"
-end
-
 VERSION = "0.2.1"
 @options = {}
 @options[:commits] = 1
@@ -53,6 +49,10 @@ else
 end
 
 puts opts if packages.empty?
+
+def colorize(text, color_code)
+  "\e[#{color_code}m#{text}\e[0m"
+end
 
 def get_pkg(pkg)
   repo, arch = "", ""
