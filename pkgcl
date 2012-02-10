@@ -127,7 +127,12 @@ end
 
 def show_output(pkg)
   # Format and print the result
-  puts "["+colorize(pkg[:name], 31)+"]"
+  print "["+colorize(pkg[:name], 31)+"]"
+  if pkg[:commits].count < @options[:commits]
+    print colorize(" (Only #{pkg[:commits].count} commits)\n", 33)
+  else
+    print "\n"
+  end
 
   output = 0
   pkg[:commits].each do |p|
