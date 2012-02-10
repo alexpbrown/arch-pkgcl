@@ -63,6 +63,12 @@ def get_pkg(pkg)
         pkg[:repo] = $2
       when /^Architecture(\s?)*: (.+)$/
         pkg[:arch] = $2
+      when /^Build Date(\s?)*: (.+)$/
+        build_date = Time.parse($2)
+        if build_date.strftime("%F") == Time.now.strftime("%F")
+          build_date = Time.now
+        end
+        pkg[:build_date] = build_date
       end
     end
   end
@@ -74,13 +80,6 @@ def get_pkg_info(pkg)
   # I'm also getting the last updated date from this url
   uri = "http://www.archlinux.org/packages/#{pkg[:repo]}/#{pkg[:arch]}/#{pkg[:name]}"
   doc = Nokogiri::HTML(open(uri))
-
-  u_date = doc.at_xpath('.//th[text()="Last Updated:"]').parent.children[2].content
-
-  pkg[:last_update] = Time.parse(u_date)
-  if pkg[:last_update].strftime("%F") == Time.now.strftime("%F")
-    pkg[:last_update] = Time.now
-  end
 
   pkg[:git_url] = doc.css("div#actionlist ul li a")[1]['href']
 end
@@ -97,7 +96,7 @@ def age_test(commit_age, pkg)
     git_time = Time.parse(commit_age)
   end
 
-  if git_time > pkg[:last_update] then
+  if git_time > pkg[:build_date] then
     return false
   else
     return true
@@ -136,7 +135,7 @@ def show_output(pkg)
     puts colorize(p[:subject], 4)
     print colorize("Age: ", 37)
     print colorize(p[:age], 36)+" - "
-    puts p[:msg].empty? ? colorize("None", 32) : colorize(p[:msg], 32)
+    puts colorize(p[:msg], 32)
     puts
     output +=1
   end
