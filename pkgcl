@@ -69,6 +69,8 @@ def get_pkg(pkg)
           build_date = Time.now
         end
         pkg[:build_date] = build_date
+      when /^$/
+        break
       end
     end
   end
