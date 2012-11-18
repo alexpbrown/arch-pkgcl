@@ -74,7 +74,7 @@ def get_pkg_info(pkg)
   # I need to get the correct git url from here, since some packages use a
   # different tracking repo (e.g. linux-headers => linux)
   # I'm also getting the last updated date from this url
-  uri = "http://www.archlinux.org/packages/#{pkg[:repo]}/#{pkg[:arch]}/#{pkg[:name]}"
+  uri = "https://www.archlinux.org/packages/#{pkg[:repo]}/#{pkg[:arch]}/#{pkg[:name]}"
   doc = Nokogiri::HTML(open(uri))
 
   u_date = doc.at_xpath('.//th[text()="Last Updated:"]').parent.children[2].content
