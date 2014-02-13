@@ -1,4 +1,5 @@
-# Maintainer/Author: Alex Brown <code@alexpbrown.me>
+# Maintainer: Alex Brown <code at alexpbrown dot me>
+# Contributor: Alex Brown <code at alexpbrown dot me>
 pkgname=pkgcl
 pkgver=0.3.1
 pkgrel=1
