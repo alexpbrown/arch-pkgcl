@@ -57,7 +57,7 @@ end
 def get_pkg(pkg)
   repo, arch = "", ""
   IO.popen([{"LC_ALL"=>"C"}, "pacman", "-Si", pkg[:name], :err => :close]) do |io|
-    io.lines do |line|
+    io.each do |line|
       case line
       when /^Repository(\s?)*: (.+)$/
         pkg[:repo] = $2
